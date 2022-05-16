@@ -99,7 +99,7 @@ def paginate(request):
         product_results = queryset_list
         return TemplateResponse(request, 'dashboard/product/roles/paginate.html',
                                 {'product_results': product_results, 'sz': p2_sz})
-    except Exception, e:
+    except Exception as e:
         return HttpResponse()
 
 

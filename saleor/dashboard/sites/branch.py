@@ -87,7 +87,7 @@ def branch_paginate(request):
             branches = paginator.page(paginator.num_pages)
         return TemplateResponse(request, 'dashboard/sites/hr/bank/branch/paginate.html', {"branches": branches})
 
-    except Exception, e:
+    except Exception as e:
         return HttpResponse(e)
 
 

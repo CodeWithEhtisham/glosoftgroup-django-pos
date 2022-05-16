@@ -137,7 +137,7 @@ def purchase_paginate(request):
                 'date': date
             }
             return TemplateResponse(request, 'dashboard/reports/purchase/paginate.html', data)
-        except Exception, e:
+        except Exception as e:
             logger.error(e)
             print (e)
 

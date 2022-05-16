@@ -103,8 +103,8 @@ def variant_paginate(request,pk=None):
         if list_sz:
             paginator = Paginator(product_results, int(list_sz))
             product_results = paginator.page(page)
-            print product_results
-            print 'sdflsdjflsdjf'
+            print(product_results)
+            print('sdflsdjflsdjf')
             return TemplateResponse(request,'dashboard/purchase/p2.html',{'product_results':product_results, 'pn':paginator.num_pages,'sz':list_sz, 'gid':0})
         else:
             paginator = Paginator(product_results, 10)

@@ -106,7 +106,7 @@ def paginate_category(request, root_pk=None):
             categories = paginator.page(paginator.num_pages)
 
         return TemplateResponse(request, 'dashboard/category/pagination/paginate.html', {'categories': categories})
-    except Exception, e:
+    except Exception as e:
         return  HttpResponse()
 
 @staff_member_required

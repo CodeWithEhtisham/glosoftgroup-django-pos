@@ -140,7 +140,7 @@ def sales_margin(request):
 			return TemplateResponse(request, 'dashboard/reports/sales_profit/ajax.html', data)
 		else:
 			return TemplateResponse(request, 'dashboard/reports/sales_profit/profit.html', data)
-	except Exception, e:
+	except Exception as e:
 		data = {
 			'status': 'false',
 			'date':date2
@@ -220,9 +220,9 @@ def sales_tax(request):
 			product = ProductVariant.objects.get(sku=i.sku)
 			try:
 				cost = product.get_cost_price().gross
-			except Exception,e:
+			except Exception as e:
 				cost = product.get_cost_price()
-			except Exception,e:
+			except Exception as e:
 				cost = 0
 			costPrice.append(cost)
 
@@ -251,7 +251,7 @@ def sales_tax(request):
 			return TemplateResponse(request, 'dashboard/reports/sales_tax/ajax.html', data)
 		else:
 			return TemplateResponse(request, 'dashboard/reports/sales_tax/tax.html', data)
-	except Exception, e:
+	except Exception as e:
 		data = {
 			'status': 'false',
 			'date':date2

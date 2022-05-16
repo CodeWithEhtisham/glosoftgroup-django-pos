@@ -97,7 +97,7 @@ class callback(APIView):
                             sent=True, 
                             description=text,
                             status='success')
-            print notif.status
+            print (notif.status)
             return Response({'message':sender},status=status.HTTP_201_CREATED)          
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
         
@@ -137,7 +137,7 @@ def callbackgg(request):
                             sent=True, 
                             description=text,
                             status='success')
-            print notif.status
+            print (notif.status)
             return Response({'message':sender},status=status.HTTP_201_CREATED)          
         return Response({'message','error'},status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'GET':       

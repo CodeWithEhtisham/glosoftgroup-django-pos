@@ -62,7 +62,7 @@ def add(request):
         user_trail(request.user.name, 'accessed add employee page', 'view')
         logger.info('User: ' + str(request.user.name) + 'viewed add employee page')
         return TemplateResponse(request, 'dashboard/hr/employee/add_employee.html', data)
-    except Exception, e:
+    except Exception as e:
         logger.error(e)
         return HttpResponse(e)
 

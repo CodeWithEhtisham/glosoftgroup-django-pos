@@ -323,7 +323,7 @@ def paginate_class_list(request):
              pc.variant_attributes.all())
             for pc in product_results.object_list]
         return TemplateResponse(request, 'dashboard/product/subcategory/paginate.html', {'classes': product_results})
-    except Exception, e:
+    except Exception as e:
         return  HttpResponse()
 
 @staff_member_required
@@ -376,7 +376,7 @@ def product_class_create(request,new_window=None):
             product_class = form.save()
             return redirect('dashboard:product-class-list')
 
-        except Exception, e:
+        except Exception as e:
             return HttpResponse(e)
         msg = pgettext_lazy(
             'Dashboard message', 'Added product sub category %s') % product_class
@@ -1219,7 +1219,7 @@ def paginate_attr(request):
             queryset_list = paginator.page(paginator.num_pages)
         product_results = queryset_list
         return TemplateResponse(request, 'dashboard/product/attributes/pagination/paginate.html', {'attributes': product_results})
-    except Exception, e:
+    except Exception as e:
         return  HttpResponse()
 
 
@@ -1255,7 +1255,7 @@ def attribute_add_modal(request):
         ctx = {'attributes': attributes, 'form':form}
 
         return TemplateResponse(request, 'dashboard/product/attributes/select.html', ctx)
-    except Exception, e:
+    except Exception as e:
         return HttpResponse(e)
 
 @staff_member_required
@@ -1366,32 +1366,31 @@ def stock_location_pagination(request):
                                 {'locations': stock_locations, 'pn': paginator.num_pages, 'sz': list_sz, 'gid': 0})
     else:
         paginator = Paginator(stock_locations, 10)
-	if p2_sz:
-		paginator = Paginator(stock_locations, int(p2_sz))
-		stock_locations = paginator.page(page)
-		return TemplateResponse(request, 'dashboard/product/stock_locations/pagination/paginate.html', {'locations': stock_locations})
-	try:
-		stock_locations = paginator.page(page)
-	except PageNotAnInteger:
-		stock_locations = paginator.page(1)
-	except InvalidPage:
-		stock_locations = paginator.page(1)
-	except EmptyPage:
-		stock_locations = paginator.page(paginator.num_pages)
-	return TemplateResponse(request, 'dashboard/product/stock_locations/pagination/paginate.html', {'locations': stock_locations})
+    if p2_sz:
+        paginator = Paginator(stock_locations, int(p2_sz))
+        stock_locations = paginator.page(page)
+        return TemplateResponse(request, 'dashboard/product/stock_locations/pagination/paginate.html', {'locations': stock_locations})
+    try:
+        stock_locations = paginator.page(page)
+    except PageNotAnInteger:
+        stock_locations = paginator.page(1)
+    except InvalidPage:
+        stock_locations = paginator.page(1)
+    except EmptyPage:
+        stock_locations = paginator.page(paginator.num_pages)
+    return TemplateResponse(request, 'dashboard/product/stock_locations/pagination/paginate.html', {'locations': stock_locations})
 
 @staff_member_required
 def stock_location_search(request):
-	if request.is_ajax():
-		page = request.GET.get('page', 1)
-		list_sz = request.GET.get('size', 10)
-		p2_sz = request.GET.get('psize')
-		q = request.GET.get('q')
-		if list_sz is None:
-			sz = 10
-		else:
-			sz = list_sz
-
+    if request.is_ajax():
+        page = request.GET.get('page', 1)
+        list_sz = request.GET.get('size', 10)
+        p2_sz = request.GET.get('psize')
+        q = request.GET.get('q')
+        if list_sz is None:
+            sz = 10
+        else:
+            sz = list_sz
         if q is not None:
             queryset_list = StockLocation.objects.filter(
                 Q(name__icontains=q)).order_by('-id')

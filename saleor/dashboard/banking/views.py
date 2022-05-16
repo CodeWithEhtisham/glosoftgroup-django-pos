@@ -68,7 +68,7 @@ def delete(request, pk=None):
                 logger.info('deleted payment option: '+ str(option.name))
                 return HttpResponse('success')
             return HttpResponse(json.dumps({'error':"Loyalty Points is not deletable"}),content_type='application/json')
-        except Exception, e:
+        except Exception as e:
             logger.error(e)
             return HttpResponse(e)
 
@@ -87,7 +87,7 @@ def edit(request, pk=None):
                 return HttpResponse('success')
             else:
                 return HttpResponse('invalid response')
-        except Exception, e:
+        except Exception as e:
             logger.error(e)
             return HttpResponse(e)
 
@@ -101,7 +101,7 @@ def detail(request, pk=None):
             user_trail(request.user.name, 'access bank details of: ' + str(option.name)+' ','view')
             logger.info('access banking details of: ' + str(option.name)+'  ')
             return TemplateResponse(request, 'dashboard/banking/detail.html', ctx)
-        except Exception, e:
+        except Exception as e:
             logger.error(e)
             return TemplateResponse(request, 'dashboard/banking/detail.html', {'error': e})
 
@@ -201,5 +201,5 @@ def paginate(request):
             except EmptyPage:
                 options = paginator.page(paginator.num_pages)
             return TemplateResponse(request, 'dashboard/banking/paginate.html', {"options": options})
-        except Exception, e:
+        except Exception as e:
             return HttpResponse()

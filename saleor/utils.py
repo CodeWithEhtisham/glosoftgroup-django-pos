@@ -4,7 +4,7 @@ from django.template import RequestContext
 from django.conf import settings
 from django.template.loader import get_template
 from xhtml2pdf import pisa
-import cStringIO as StringIO
+from io import StringIO
 import cgi
 import os
 from .site.models import SiteSettings

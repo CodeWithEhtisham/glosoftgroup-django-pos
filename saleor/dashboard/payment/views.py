@@ -94,7 +94,7 @@ def delete(request, pk=None):
                 logger.info('deleted payment option: '+ str(option.name))
                 return HttpResponse('success')
             return HttpResponse(json.dumps({'error':"Loyalty Points is not deletable"}),content_type='application/json')
-        except Exception, e:
+        except Exception as e:
             logger.error(e)
             return HttpResponse(e)
 
@@ -113,7 +113,7 @@ def stock_delete(request, pk=None):
                 return HttpResponse('success')
             return HttpResponse(json.dumps({'error': "You cannot delete Credit"}),
                                 content_type='application/json')
-        except Exception, e:
+        except Exception as e:
             logger.error(e)
             return HttpResponse(e)
 
@@ -136,7 +136,7 @@ def edit(request, pk=None):
                 return HttpResponse('success')
             else:
                 return HttpResponse('invalid response')
-        except Exception, e:
+        except Exception as e:
             logger.error(e)
             return HttpResponse(e)
 
@@ -154,7 +154,7 @@ def detail(request, pk=None):
             user_trail(request.user.name, 'access payment option details of: '+ str(option.name)+' ','view')
             logger.info('access payment option details of: '+ str(option.name)+'  ')
             return TemplateResponse(request, 'dashboard/payment/options/detail.html', ctx)
-        except Exception, e:
+        except Exception as e:
             logger.error(e)
             return TemplateResponse(request, 'dashboard/payment/options/detail.html', {'error': e})
 
@@ -296,7 +296,7 @@ def options_paginate(request):
             except EmptyPage:
                 options = paginator.page(paginator.num_pages)
             return TemplateResponse(request, 'dashboard/payment/options/paginate.html', {"options": options})
-        except Exception, e:
+        except Exception as e:
             return HttpResponse()
 
 
@@ -348,7 +348,7 @@ def stock_edit(request, pk=None):
                 return HttpResponse('success')
             else:
                 return HttpResponse('invalid response')
-        except Exception, e:
+        except Exception as e:
             logger.error(e)
             return HttpResponse(e)
 
@@ -366,7 +366,7 @@ def stock_detail(request, pk=None):
             user_trail(request.user.name, 'access payment option details of: '+ str(option.name)+' ','view')
             logger.info('access payment option details of: '+ str(option.name)+'  ')
             return TemplateResponse(request, 'dashboard/payment/stock/detail.html', ctx)
-        except Exception, e:
+        except Exception as e:
             logger.error(e)
             return TemplateResponse(request, 'dashboard/payment/stock/detail.html', {'error': e})
 
@@ -424,7 +424,7 @@ def options_stock_paginate(request):
             except EmptyPage:
                 options = paginator.page(paginator.num_pages)
             return TemplateResponse(request, 'dashboard/payment/stock/paginate.html', {"options": options})
-        except Exception, e:
+        except Exception as e:
             return HttpResponse()
 
 

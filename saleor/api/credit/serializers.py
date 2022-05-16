@@ -164,7 +164,7 @@ class CreateCreditSerializer(serializers.ModelSerializer):
             logger.error('Incorrect customer details')
             raise ValidationError('Incorrect customer details')
         if customer.creditable:
-            print 'creditable'
+            print ('creditable')
         else:
             logger.error("Customer is not creditable")
             raise ValidationError('Customer is not creditable')

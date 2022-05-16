@@ -9,7 +9,7 @@ from ..product.utils import products_with_availability, products_for_homepage
 def home(request):
 	if request.user.is_authenticated():
 		referer = request.META.get('HTTP_REFERER')
-		print referer
+		print (referer)
 		return redirect('dashboard:landing-page')
 	else:
 		products = products_for_homepage()[:8]

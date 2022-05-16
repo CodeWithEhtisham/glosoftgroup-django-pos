@@ -228,7 +228,7 @@ def write(request):
                 return TemplateResponse(request,
                                 'dashboard/notification/write_single.html',
                                 ctx)
-            except Exception, e:
+            except Exception as e:
                 return HttpResponse(e)
     return TemplateResponse(request,
                             'dashboard/notification/write.html',

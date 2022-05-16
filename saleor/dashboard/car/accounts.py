@@ -48,11 +48,11 @@ def list(request):
 @staff_member_required
 def add(request):
     if request.method == 'POST':
-        print request.POST.get('bank')
-        print request.POST.get('name')
-        print request.POST.get('number')
-        print request.POST.get('amount')
-
+        print (request.POST.get('bank'))
+        print (request.POST.get('name'))
+        print (request.POST.get('number'))
+        print (request.POST.get('amount')
+)
         account = Account()
         account.name = request.POST.get('name')
         bank = Bank.objects.get(name=request.POST.get('bank'))
@@ -76,7 +76,7 @@ def delete(request, pk=None):
             user_trail(request.user.name, 'deleted bank account : '+ str(account.name),'delete')
             logger.info('deleted bank account: '+ str(account.name))
             return HttpResponse('success')
-        except Exception, e:
+        except Exception as e:
             logger.error(e)
             return HttpResponse(e)
 
@@ -94,7 +94,7 @@ def edit(request, pk=None):
             user_trail(request.user.name, 'updated bank account : '+ str(account.name),'update')
             logger.info('updated bank account: '+ str(account.name))
             return HttpResponse('success')
-        except Exception, e:
+        except Exception as e:
             logger.error(e)
             return HttpResponse(e)
 
@@ -108,7 +108,7 @@ def detail(request, pk=None):
             user_trail(request.user.name, 'access bank account details of: ' + str(account.name)+' ','view')
             logger.info('access banking account details of: ' + str(account.name)+'  ')
             return TemplateResponse(request, 'dashboard/banking/accounts/detail.html', ctx)
-        except Exception, e:
+        except Exception as e:
             logger.error(e)
             return TemplateResponse(request, 'dashboard/banking/accounts/detail.html', {'error': e})
 
@@ -210,5 +210,5 @@ def paginate(request):
             except EmptyPage:
                 options = paginator.page(paginator.num_pages)
             return TemplateResponse(request, 'dashboard/banking/accounts/paginate.html', {"accounts": options})
-        except Exception, e:
+        except Exception as e:
             return HttpResponse()

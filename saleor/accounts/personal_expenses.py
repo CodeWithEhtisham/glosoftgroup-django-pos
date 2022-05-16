@@ -91,7 +91,7 @@ def expenses_paginate(request):
             except EmptyPage:
                 expenses = paginator.page(paginator.num_pages)
             return TemplateResponse(request, 'dashboard/accounts/personal_expenses/paginate.html', {"expenses": expenses})
-        except Exception, e:
+        except Exception as e:
             return  HttpResponse()
 
 def detail(request):
@@ -145,7 +145,7 @@ def delete(request, pk=None):
             user_trail(request.user.name, 'deleted expense: '+ str(expense.expense_type),'delete')
             logger.info('deleted expense: '+ str(expense.expense_type))
             return HttpResponse('success')
-        except Exception, e:
+        except Exception as e:
             logger.error(e)
             return HttpResponse(e)
 
@@ -192,6 +192,6 @@ def detail(request, pk=None):
             logger.info(
                 'access expense details of: ' + str(expense.expense_type) + ' on ' + str(expense.expense_date))
             return TemplateResponse(request, 'dashboard/accounts/expenses/detail.html', {'expense': expense})
-        except Exception, e:
+        except Exception as e:
             logger.error(e)
             return TemplateResponse(request, 'dashboard/accounts/expenses/detail.html', {'expense': expense})

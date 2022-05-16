@@ -223,7 +223,7 @@ def top_categories(month=None, year=None, period=None):
             "date_period":date_period
         }
         return data
-    except Exception,e:
+    except Exception as e:
         logger.error(e)
         data = {
             "sales_by_category": None,

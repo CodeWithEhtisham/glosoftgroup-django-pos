@@ -92,7 +92,7 @@ def roles_paginate(request):
         except EmptyPage:
             roles = paginator.page(paginator.num_pages)
         return TemplateResponse(request, 'dashboard/sites/hr/roles/paginate.html', {"roles": roles})
-    except Exception, e:
+    except Exception as e:
         return HttpResponse()
 
 

@@ -81,7 +81,7 @@ def bank_paginate(request):
         except EmptyPage:
             banks = paginator.page(paginator.num_pages)
         return TemplateResponse(request, 'dashboard/sites/hr/bank/paginate.html', {"banks": banks})
-    except Exception, e:
+    except Exception as e:
         return HttpResponse()
 
 

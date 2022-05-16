@@ -475,8 +475,8 @@ def get_sales_by_week(request):
     first_range_date = datetime.strptime(date_from, '%Y-%m-%d')
     second_range_date = datetime.strptime(d_to, '%Y-%m-%d')
 
-    print first_range_date
-    print second_range_date
+    print(first_range_date)
+    print(second_range_date)
 
     default3 = []
     labels3 = []

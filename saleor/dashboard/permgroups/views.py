@@ -243,7 +243,7 @@ def group_detail(request, pk):
         ctx = {"users": users_in_group, "group": group.name}
         html = render_to_string('dashboard/permissions/group_detail.html', ctx)
         return HttpResponse(html)
-    except Exception, e:
+    except Exception as e:
         logger.error(e)
         ctx = {"group": group.name}
         html = render_to_string('dashboard/permissions/group_detail.html', ctx)
@@ -302,7 +302,7 @@ def get_group_users(request):
             to_json.append(user_dict)
         response_data = simplejson.dumps(to_json)
         return HttpResponse(response_data, content_type='application/json')
-    except Exception, e:
+    except Exception as e:
         return HttpResponse('none')
 
 
@@ -392,5 +392,5 @@ def group_update_users(request):
         try:
             user_manage(users, group_has_users, group)
             return HttpResponse('Update wass successful')
-        except Exception, e:
+        except Exception as e:
             return HttpResponse(e)

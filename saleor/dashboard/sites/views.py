@@ -47,10 +47,10 @@ def update_settings(request, site_id=None):
         site = get_object_or_404(SiteSettings, pk=site_id)
         if request.POST.get('sms_username'):
             site.sms_gateway_username = request.POST.get('sms_username')
-            print site.sms_gateway_username
+            print (site.sms_gateway_username)
         if request.POST.get('sms_api_key'):
             site.sms_gateway_apikey = request.POST.get('sms_api_key')
-            print site.sms_gateway_apikey
+            print (site.sms_gateway_apikey)
         if request.POST.get('company_name'):
             site.name = request.POST.get('company_name')
         if request.POST.get('wholesale_name'):
@@ -93,7 +93,7 @@ def add_sitekeys(request):
                 return HttpResponse(result, content_type="application/json")
             try:
                 Files.objects.all().delete()
-            except DatabaseError, BaseException:
+            except DatabaseError or BaseException:
                 result = json.dumps({'message': 'Failed to Add license', 'status': 500})
                 return HttpResponse(result, content_type="application/json")
 
@@ -108,7 +108,7 @@ def add_sitekeys(request):
 
         try:
             new_key.save()
-        except DatabaseError, BaseException:
+        except DatabaseError or  BaseException:
             logger.info('Error when saving ')
 
         if new_key.id:

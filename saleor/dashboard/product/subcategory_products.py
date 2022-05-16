@@ -105,7 +105,7 @@ def paginate(request):
             'product_pk': pk,
         }
         return TemplateResponse(request, 'dashboard/product/subcategory/products/paginate.html', data)
-    except Exception, e:
+    except Exception as e:
         return HttpResponse()
 
 

@@ -115,7 +115,7 @@ def paginate(request):
             'cat_pk': cat.pk,
         }
         return TemplateResponse(request, 'dashboard/category/subcategories/paginate.html', data)
-    except Exception, e:
+    except Exception as e:
         return HttpResponse()
 
 

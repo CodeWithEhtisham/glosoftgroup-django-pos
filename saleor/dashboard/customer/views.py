@@ -518,5 +518,5 @@ def costomer_loyalty_points_pdf(request):
 
         return response
     except ObjectDoesNotExist as e:
-        print e
+        print (e)
         logger.error(e)

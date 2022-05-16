@@ -25,7 +25,7 @@ def import_db(request):
         call_command('loaddata', 'media/' + str(filename), stdout=out)
         d = out.getvalue()
         if 'Installed' in d:
-            print uploaded_file_url
+            print (uploaded_file_url)
             file_path = os.path.join(settings.MEDIA_ROOT, str(filename))
             os.unlink(file_path)
             logger.info('success installing the database')

@@ -259,16 +259,16 @@ def carry_items(instance, items):
         try:
             item.stock = Stock.objects.get(pk=item.stock.pk)
         except Exception as e:
-            print e
+            print (e)
             pass
         query = Item.objects.filter(transfer=instance, stock=item.stock)
         if query.exists():
-            print 'updating....'
+            print ('updating....')
             single = query.first()
             single.qty = int(single.qty) + int(item.qty)
             single.transferred_qty = int(single.transferred_qty) + int(item.qty)
             single.expected_qty = single.qty
-            print single.transferred_qty
+            print (single.transferred_qty)
             single.price = Decimal(single.price) + Decimal(item.price)
             if single.qty > 0:
                 single.save()
@@ -306,11 +306,11 @@ def create_items(instance, items):
         try:
             item['stock'] = Stock.objects.get(pk=item['stock'])
         except Exception as e:
-            print e
+            print( e)
             pass
         query = Item.objects.filter(transfer=instance, stock=item['stock'])
         if query.exists():
-            print 'updating....'
+            print ('updating....')
             single = query.first()
             single.qty = int(single.qty) + int(item['qty'])
             single.transferred_qty = int(single.transferred_qty) + int(item['qty'])
@@ -351,7 +351,7 @@ class CreateListSerializer(serializers.ModelSerializer):
         fields = fields + ('counter_transfer_items',)
 
     def create(self, validated_data):
-        print validated_data
+        print (validated_data)
         instance = Table()
         instance.name = validated_data.get('name')
         instance.counter = validated_data.get('counter')

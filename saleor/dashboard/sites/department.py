@@ -79,7 +79,7 @@ def department_paginate(request):
         except EmptyPage:
             departments = paginator.page(paginator.num_pages)
         return TemplateResponse(request, 'dashboard/sites/hr/department/paginate.html', {"departments": departments})
-    except Exception, e:
+    except Exception as e:
         return HttpResponse()
 
 

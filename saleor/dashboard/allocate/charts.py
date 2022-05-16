@@ -705,7 +705,7 @@ def get_user_sale_details(request):
             last_sales = Sales.objects.filter(user__name__contains=get_categ).values('user__name', 'total_net',
                                                                                      'created').annotate(
                 Sum('total_net', distinct=True)).order_by().latest('id')
-            print get_categ
+            print (get_categ)
 
             data = {
                 "category": get_categ,
@@ -882,7 +882,7 @@ def get_terminal_sale_details(request):
             last_sales = Sales.objects.filter(terminal__terminal_name__contains=get_categ).values(
                 'terminal__terminal_name', 'total_net', 'created').annotate(
                 Sum('total_net', distinct=True)).order_by().latest('id')
-            print get_categ
+            print (get_categ)
 
             data = {
                 "category": get_categ,

@@ -76,7 +76,7 @@ def sales_detail(request, pk=None):
             product = ProductVariant.objects.get(sku=t.sku)
             try:
                 tax = product.product_tax * t.quantity
-            except Exception, e:
+            except Exception as e:
                 tax = (0.00) * t.quantity
             setattr(t, 'tax', tax)
             total_items.append(t)
@@ -293,7 +293,7 @@ def pdf_sale_tax_detail(request, pk=None):
             product = ProductVariant.objects.get(sku=t.sku)
             try:
                 tax = product.product_tax * itquantity
-            except Exception, e:
+            except Exception as e:
                 tax = (0.00) * t.quantity
             setattr(t, 'tax', tax)
             total_items.append(t)

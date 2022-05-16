@@ -29,7 +29,7 @@ def view(request):
                 closing = lastEntry.closing
                 expenses = Expenses.objects.filter(added_on__icontains=td).aggregate(Sum('amount'))['amount__sum']
 
-                print expenses
+                print (expenses)
             else:
                 new_opening = lastEntry.closing
                 new_balance = lastEntry.closing
@@ -65,7 +65,7 @@ def view(request):
         }
 
         return TemplateResponse(request, 'dashboard/accounts/petty_cash/view.html', data)
-    except Exception, e:
+    except Exception as e:
         return HttpResponse(e)
 
 
@@ -109,7 +109,7 @@ def add(request):
                     amount) + ' to petty cash, current balance is ' + str(balance), 'update')
             return HttpResponse(balance)
 
-    except Exception, e:
+    except Exception as e:
         logger.error(e)
         HttpResponse(e)
 
@@ -119,7 +119,7 @@ def balance(request):
         lastEntryId = PettyCash.objects.latest('id')
         amount = lastEntryId.closing
         return HttpResponse(amount)
-    except Exception, e:
+    except Exception as e:
         amount = 0
         return HttpResponse(amount)
 
@@ -173,7 +173,7 @@ def expenditure(request):
             'expenses': expenses
         }
         return TemplateResponse(request, 'dashboard/accounts/petty_cash/expenditure.html', data)
-    except BaseException, e:
+    except BaseException as e:
         print (e)
         return TemplateResponse(request, 'dashboard/accounts/petty_cash/expenditure.html', {})
 

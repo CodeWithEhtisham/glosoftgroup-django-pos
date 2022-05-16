@@ -166,7 +166,7 @@ class CreateInvoiceSerializer(serializers.ModelSerializer):
                 customer = Customer.objects.create(name=name, mobile=mobile)
             else:                
                 customer = None
-                print 'customer details provided dont meet adding customer criteria'
+                print ('customer details provided dont meet adding customer criteria')
 
 
         invoice_number = validated_data.get('invoice_number')

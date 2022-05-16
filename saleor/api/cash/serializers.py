@@ -191,7 +191,7 @@ class UserTransactionSerializer(serializers.ModelSerializer):
 
         trail = str(manager)+' '+trans_type+' '+str(amount)+\
                     ' from TERMINAL:'+str(terminal)
-        print trail
+        print (trail)
         if trans_type == 'deposit':
             self.terminal.amount += Decimal(amount)
             self.terminal.save()
@@ -218,7 +218,7 @@ class UserTransactionSerializer(serializers.ModelSerializer):
                                            amount=amount,
                                            trans_type=trans_type,
                                            note=note)
-        print drawer
+        print (drawer)
 
         return validated_data
 

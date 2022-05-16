@@ -75,7 +75,7 @@ def list_messagessdweq(request, status=None):
         elif status == 'sent_to_sms':
             title = 'Sent'
             mark_read = False
-            print request.user.mobile
+            print (request.user.mobile)
             messages = Notification.objects.filter(from_number=str(request.user.mobile), sent=True)
         elif status == 'pending':
             title = 'Pending'
@@ -156,7 +156,7 @@ def messages_paginate(request):
         elif status == 'sent_to_sms':
             title = 'Sent'
             mark_read = False
-            print request.user.mobile
+            print (request.user.mobile)
             messages = Notification.objects.filter(from_number=str(request.user.mobile), sent=True)
         elif status == 'pending':
             title = 'Pending'
@@ -239,7 +239,7 @@ def messages_paginate(request):
             elif status == 'sent_to_sms':
                 title = 'Sent'
                 mark_read = False
-                print request.user.mobile
+                print (request.user.mobile)
                 messages = Notification.objects.filter(from_number=str(request.user.mobile), sent=True)
             elif status == 'pending':
                 title = 'Pending'
@@ -316,7 +316,7 @@ def messages_paginate(request):
                 'total_notifications': len(messages),
                 'users': User.objects.all()}
             return TemplateResponse(request, 'dashboard/messages/paginate/paginate.html', ctx)
-        except Exception, e:
+        except Exception as e:
             return HttpResponse()
 
 
@@ -347,7 +347,7 @@ def message_searchs(request):
         elif status == 'sent_to_sms':
             title = 'Sent'
             mark_read = False
-            print request.user.mobile
+            print (request.user.mobile)
             messages = Notification.objects.filter(from_number=str(request.user.mobile), sent=True)
         elif status == 'pending':
             title = 'Pending'
@@ -431,7 +431,7 @@ def list_messages(request, status=None):
     elif status == 'sent_to_sms':
         title = 'Sent'
         mark_read = False
-        print request.user.mobile
+        print (request.user.mobile)
         messages = Notification.objects.filter(from_number=str(request.user.mobile), sent=True)
     elif status == 'pending':
         title = 'Pending'
@@ -699,17 +699,17 @@ def sendSms(to, message, subject, actor, tag='user', message_id=None):
                 'number': recipient['number'],
                 'status': recipient['status']
             })
-            print 'number=%s;status=%s;messageId=%s;cost=%s' % (recipient['number'],
+            print ('number=%s;status=%s;messageId=%s;cost=%s' % (recipient['number'],
                                                                 recipient['status'],
                                                                 recipient['messageId'],
-                                                                recipient['cost'])
+                                                                recipient['cost']))
 
             if not message_id:
                 send_notification(recipient['number'], actor, tag, message, subject, recipient['status'])
             else:
                 update_message(message_id, recipient['status'])
-    except AfricasTalkingGatewayException, e:
-        print 'Encountered an error while sending: %s' % str(e)
+    except AfricasTalkingGatewayException as e:
+        print( 'Encountered an error while sending: %s' % str(e))
         return None
 
 
@@ -733,20 +733,20 @@ def fetch_messages():
             messages = gateway.fetchMessages(lastReceivedId)
 
             for message in messages:
-                print 'from=%s;to=%s;date=%s;text=%s;linkId=%s;' % (message['from'],
+                print ('from=%s;to=%s;date=%s;text=%s;linkId=%s;' % (message['from'],
                                                                     message['to'],
                                                                     message['date'],
                                                                     message['text'],
                                                                     message['linKId']
-                                                                    )
+                                                                    ))
                 lastReceivedId = message['id']
         if len(messages) == 0:
             return False
         else:
             return message
 
-    except AfricasTalkingGatewayException, e:
-        print 'Encountered an error while fetching messages: %s' % str(e)
+    except AfricasTalkingGatewayException as e:
+        print ('Encountered an error while fetching messages: %s' % str(e))
         # return False
 
 
@@ -767,7 +767,7 @@ def send_notification(number=None, actor=None, tag='user', body=None, subject=No
     if tag == 'user':
         user = User.objects.get(mobile=number.decode('utf-8'))
     if tag == 'customer':
-        print number
+        print (number)
         user = Customer.objects.get(mobile=number.decode('utf-8'))
     if tag == 'supplier':
         user = Supplier.objects.get(mobile=number.decode('utf-8'))
@@ -783,7 +783,7 @@ def send_notification(number=None, actor=None, tag='user', body=None, subject=No
             sent=True,
             description=body,
             status=status)
-        print notif.status
+        print (notif.status)
     else:
         notif = Notification.objects.create(
             to=tag,
@@ -795,5 +795,5 @@ def send_notification(number=None, actor=None, tag='user', body=None, subject=No
             verb=subject,
             description=body,
             status=status)
-        print notif.status
-    print 'message saved on db'
+        print (notif.status)
+    print ('message saved on db')

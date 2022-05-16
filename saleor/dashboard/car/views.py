@@ -71,7 +71,7 @@ def delete(request, pk=None):
                 logger.info('deleted payment option: '+ str(option.name))
                 return HttpResponse('success')
             return HttpResponse(json.dumps({'error':"Object is not deletable"}),content_type='application/json')
-        except Exception, e:
+        except Exception as e:
             logger.error(e)
             return HttpResponse(e)
 
@@ -91,7 +91,7 @@ def edit(request, pk=None):
                 return HttpResponse('success')
             else:
                 return HttpResponse('invalid response')
-        except Exception, e:
+        except Exception as e:
             logger.error(e)
             return HttpResponse(e)
 
@@ -105,7 +105,7 @@ def detail(request, pk=None):
             user_trail(request.user.name, 'access Car details of: ' + str(option.name)+' ','view')
             logger.info('access car details of: ' + str(option.name)+'  ')
             return TemplateResponse(request, 'dashboard/car/detail.html', ctx)
-        except Exception, e:
+        except Exception as e:
             logger.error(e)
             return TemplateResponse(request, 'dashboard/car/detail.html', {'error': e})
 
@@ -205,5 +205,5 @@ def paginate(request):
             except EmptyPage:
                 options = paginator.page(paginator.num_pages)
             return TemplateResponse(request, 'dashboard/car/paginate.html', {"options": options})
-        except Exception, e:
+        except Exception as e:
             return HttpResponse()

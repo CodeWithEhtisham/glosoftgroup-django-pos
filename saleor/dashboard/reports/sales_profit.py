@@ -94,7 +94,7 @@ def sales_period_results(year, month=None):
 		try:
 			# quantity = product.get_cost_price().gross
 			quantity = i.total_purchase
-		except ValueError, e:
+		except ValueError as e:
 			# quantity = product.get_cost_price()
 			quantity = 0
 		except:
@@ -137,7 +137,7 @@ def sales_year_results(lastyear, thisyear, month=None):
 		try:
 			# quantity = product.get_cost_price().gross
 			quantity = i.total_purchase
-		except ValueError, e:
+		except ValueError as e:
 			# quantity = product.get_cost_price()
 			quantity = 0
 		except:
@@ -372,7 +372,7 @@ def sales_profit(request):
 			return TemplateResponse(request, 'dashboard/reports/sales_profit/ajax.html', data)
 		else:
 			return TemplateResponse(request, 'dashboard/reports/sales_profit/profit.html', data)
-	except Exception, e:
+	except Exception as e:
 		print (e)
 		# return HttpResponse(e)
 		data = {
@@ -454,9 +454,9 @@ def sales_tax(request):
 			product = ProductVariant.objects.get(sku=i.sku)
 			try:
 				cost = product.get_cost_price().gross
-			except Exception,e:
+			except Exception as e:
 				cost = product.get_cost_price()
-			except Exception,e:
+			except Exception as e:
 				cost = 0
 			costPrice.append(cost)
 
@@ -485,7 +485,7 @@ def sales_tax(request):
 			return TemplateResponse(request, 'dashboard/reports/sales_tax/ajax.html', data)
 		else:
 			return TemplateResponse(request, 'dashboard/reports/sales_tax/tax.html', data)
-	except Exception, e:
+	except Exception as e:
 		data = {
 			'status': 'false',
 			'date':date2

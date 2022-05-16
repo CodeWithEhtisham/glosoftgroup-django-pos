@@ -43,7 +43,7 @@ def sales_list(request):
                 product = ProductVariant.objects.get(sku=i.sku)
                 try:
                     quantity = product.get_cost_price().gross * i.quantity
-                except ValueError, e:
+                except ValueError as e:
                     quantity = product.get_cost_price() * i.quantity
                 except:
                     quantity = 0
@@ -110,7 +110,7 @@ def sales_detail(request, pk=None):
             product = ProductVariant.objects.get(sku=t.sku)
             try:
                 itemPrice = product.get_cost_price().gross * t.quantity
-            except ValueError, e:
+            except ValueError as e:
                 itemPrice = product.get_cost_price() * t.quantity
             except:
                 itemPrice = 0
@@ -163,7 +163,7 @@ def sales_paginate(request):
                     product = ProductVariant.objects.get(sku=i.sku)
                     try:
                         quantity = product.get_cost_price().gross * i.quantity
-                    except ValueError, e:
+                    except ValueError as e:
                         quantity = product.get_cost_price() * i.quantity
                     except:
                         quantity = 0
@@ -218,7 +218,7 @@ def sales_paginate(request):
                     product = ProductVariant.objects.get(sku=i.sku)
                     try:
                         quantity = product.get_cost_price().gross * i.quantity
-                    except ValueError, e:
+                    except ValueError as e:
                         quantity = product.get_cost_price() * i.quantity
                     except:
                         quantity = 0
@@ -299,7 +299,7 @@ def sales_search(request):
                         product = ProductVariant.objects.get(sku=i.sku)
                         try:
                             quantity = product.get_cost_price().gross * i.quantity
-                        except ValueError, e:
+                        except ValueError as e:
                             quantity = product.get_cost_price() * i.quantity
                         except:
                             quantity = 0
@@ -348,7 +348,7 @@ def sales_search(request):
                         product = ProductVariant.objects.get(sku=i.sku)
                         try:
                             quantity = product.get_cost_price().gross * i.quantity
-                        except ValueError, e:
+                        except ValueError as e:
                             quantity = product.get_cost_price() * i.quantity
                         except:
                             quantity = 0
@@ -442,7 +442,7 @@ def pdf_sale_tax_detail(request, pk=None):
             product = ProductVariant.objects.get(sku=t.sku)
             try:
                 itemPrice = product.get_cost_price().gross * t.quantity
-            except ValueError, e:
+            except ValueError as e:
                 itemPrice = product.get_cost_price() * t.quantity
             except:
                 itemPrice = 0
@@ -507,7 +507,7 @@ def sales_list_tax_pdf(request):
                         product = ProductVariant.objects.get(sku=i.sku)
                         try:
                             quantity = product.get_cost_price().gross * i.quantity
-                        except ValueError, e:
+                        except ValueError as e:
                             quantity = product.get_cost_price() * i.quantity
                         except:
                             quantity = 0
@@ -537,7 +537,7 @@ def sales_list_tax_pdf(request):
                         product = ProductVariant.objects.get(sku=i.sku)
                         try:
                             quantity = product.get_cost_price().gross * i.quantity
-                        except ValueError, e:
+                        except ValueError as e:
                             quantity = product.get_cost_price() * i.quantity
                         except:
                             quantity = 0
@@ -569,7 +569,7 @@ def sales_list_tax_pdf(request):
                     product = ProductVariant.objects.get(sku=i.sku)
                     try:
                         quantity = product.get_cost_price().gross * i.quantity
-                    except ValueError, e:
+                    except ValueError as e:
                         quantity = product.get_cost_price() * i.quantity
                     except:
                         quantity = 0
@@ -606,7 +606,7 @@ def sales_list_tax_pdf(request):
                     product = ProductVariant.objects.get(sku=i.sku)
                     try:
                         quantity = product.get_cost_price().gross * i.quantity
-                    except ValueError, e:
+                    except ValueError as e:
                         quantity = product.get_cost_price() * i.quantity
                     except:
                         quantity = 0
@@ -671,7 +671,7 @@ def sales_items_paginate(request):
             try:
                 itemPrice = product.get_cost_price().gross * t['quantity']
                 retailPrice = product.get_cost_price().gross
-            except ValueError, e:
+            except ValueError as e:
                 itemPrice = product.get_cost_price() * t['quantity']
                 retailPrice = product.get_cost_price()
             except:
@@ -753,7 +753,7 @@ def sales_items_search(request):
                 try:
                     itemPrice = product.get_cost_price().gross * t['quantity']
                     retailPrice = product.get_cost_price().gross
-                except ValueError, e:
+                except ValueError as e:
                     itemPrice = product.get_cost_price() * t['quantity']
                     retailPrice = product.get_cost_price()
                 except:
@@ -839,7 +839,7 @@ def sales_list_margin_items_pdf(request):
                 try:
                     itemPrice = product.get_cost_price().gross * t['quantity']
                     retailPrice = product.get_cost_price().gross
-                except ValueError, e:
+                except ValueError as e:
                     itemPrice = product.get_cost_price() * t['quantity']
                     retailPrice = product.get_cost_price()
                 except:
@@ -877,7 +877,7 @@ def sales_list_margin_items_pdf(request):
                 try:
                     itemPrice = product.get_cost_price().gross * t['quantity']
                     retailPrice = product.get_cost_price().gross
-                except ValueError, e:
+                except ValueError as e:
                     itemPrice = product.get_cost_price() * t['quantity']
                     retailPrice = product.get_cost_price()
                 except:
