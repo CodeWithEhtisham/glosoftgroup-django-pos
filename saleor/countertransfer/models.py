@@ -157,8 +157,8 @@ class TransferManager(BaseUserManager):
                       not_survived_count=models.Count('counter', filter=models.Q(trashed=False))) \
             .order_by('counter')
         for i in dataset:
-            print i
-            print '*'*123
+            print (i)
+            print ('*'*123)
         title = self.generate_title('Counter Transfer Report ', date_from, date_to, date, mode)
         data = {
             'series': series,
@@ -348,8 +348,8 @@ class TransferItemManager(BaseUserManager):
                 transferred=models.Sum('transferred_qty')) \
             .order_by('counter')
         for i in dataset:
-            print i
-            print '*' * 123
+            print (i)
+            print ('*' * 123)
         return dataset
 
     def top_products(self, date_from=None, date_to=None, date=None, mode=None, counter=None, query_type='total'):
